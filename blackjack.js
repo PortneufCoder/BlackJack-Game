@@ -1,4 +1,5 @@
 // BlackJack GAME
+/*jshint esversion: 6 */
 
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 
@@ -18,21 +19,41 @@ let values = [
   "Two"
 ];
 
-let startGame = document.getElementById('start-game');
-let newGameBtn = document.getElementById('new-game');
-let clickBtn = document.getElementById('click-button');
-let hideBtn = document.getElementById('hide-button');
+let startGame = document.getElementById("start-game");
+let newGameBtn = document.getElementById("new-game");
+let clickBtn = document.getElementById("click-button");
+let hideBtn = document.getElementById("hide-button");
 
-clickBtn.style.display = 'none';
-hideBtn.style.display = 'none';
+let gameStarted = false,
+  gameOver = false,
+  playerWon = false,
+  dealerCards = [],
+  playerCards = [],
+  dealerScore = 0,
+  playerScore = 0,
+  deck = [];
 
-newGameBtn.addEventListener('click', () => {
+clickBtn.style.display = "none";
+hideBtn.style.display = "none";
+showStatus();
+
+newGameBtn.addEventListener("click", () => {
+
+  gameStarted = true;
+  gameOver = false;
+  playerWon = false;
+  
+  deck = createDeck();
+  shuffledeck(deck);
+  dealerCards = [getNextCard(), getNextCard()];
+  playerCards = [getNextCard(), getNextCard()];
+
   startGame.innerHTML = "Game on ...";
   newGameBtn.style.display = "none";
   clickBtn.style.display = "inline";
   hideBtn.style.display = "inline";
+  showStatus();
 });
-
 
 createDeck = () => {
   let deck = [];
@@ -50,6 +71,15 @@ createDeck = () => {
   return deck;
 };
 
+shuffledeck = deck => {
+  for (let i = 0; i < deck.length; i++) {
+    let swapIdx = Math.trunc(Math.random() * deck.length);
+    let tmp = deck[swapIdx];
+    deck[swapIdx] = deck[i];
+    deck[i] = tmp;
+  }
+};
+
 getCardString = card => {
   return `${card.value} of ${card.suit}`;
 };
@@ -58,9 +88,17 @@ getNextCard = () => {
   return deck.shift();
 };
 
-let deck = createDeck();
+showStatus = () => {
+  if (!gameStarted) {
+    startGame.innerHTML = "Welcome to Bl@ck J@cK!";
+    return;
+  }
+  for (let i = 0; i < deck.length; i++) {
+    startGame.innerHTML += `\n ${getCardString(deck[i])}`;
+  }
+};
 
-let playerCards = [getNextCard(), getNextCard()];
+
 
 console.log("Welcome to Blackjack!");
 console.log("You are dealt:");
