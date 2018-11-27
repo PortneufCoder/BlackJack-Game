@@ -4,7 +4,7 @@ if (test < 4) {
     console.log("You won!")
 } else if (test >= 25) {
     test = 30;
-    console.log(Date.now(), test)
+    console.log(Date(), test)
     console.log("oops, test changed!")
 } else {
     console.log("Restart!")
@@ -35,7 +35,7 @@ funcLoop = () => {
     let africa = [];
     let northAmerica = ['Canada', 'USA', 'Mexico', 'Magdalene Isls', 'Caicos Islands']
 
-    if (northAmerica[2].charAt(0) === "D") {
+    if (northAmerica[2].charAt(0) === "M") {
         africa.push(northAmerica[2]);
         console.log(africa)
         let facts = northAmerica.splice(2, 1);
@@ -48,3 +48,17 @@ funcLoop = () => {
 }
 
 funcLoop();
+
+// testing array of objects
+
+let testObject = {};
+let testArray = new Array;
+
+if (testArray !== undefined) {
+    testArray.push('firstWord', 'secondWord')
+    console.log(testArray)
+    testArray.pop(1)
+    console.log(testArray)
+} else (
+    console.log("wasn't undefined!")
+)
