@@ -1,5 +1,5 @@
 // BlackJack GAME
-/*jshint esversion: 6 */
+
 
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 
