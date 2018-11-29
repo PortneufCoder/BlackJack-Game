@@ -4,3 +4,5 @@
 > take a quick refresher on my JS skills by building a game.
   
 - It will be browser-based, so simply forking and cloning the code etc will get you up and running!
+
+- Also contains some practice on more advanced js topics!
