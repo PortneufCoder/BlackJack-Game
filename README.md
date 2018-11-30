@@ -7,7 +7,7 @@
 
 - Also contains some practice on more advanced js topics!
 
-**A function's prototype is the onject _instance_ that will become the prototype for all objects created using this function as a constructor.**
+**A function's prototype is the object _instance_ that will become the prototype for all objects created using this function as a constructor.**
 
 **An object's prototype is the object _instance_ from which the object is inherited.**
 
