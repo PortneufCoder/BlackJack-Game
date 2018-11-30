@@ -8,13 +8,13 @@ console.log(cat);
 
 
 // Creating objects using classes
-class Dog {
-  constructor(name, color, breed) {
-    this.name = name;
-    this.color = color;
-    this.breed = breed;
-  }
-  }
+// class Dog {
+//   constructor(name, color, breed) {
+//     this.name = name;
+//     this.color = color;
+//     this.breed = breed;
+//   }
+//   }
 
 
 function Dog (name, color, breed) {
@@ -22,7 +22,20 @@ function Dog (name, color, breed) {
     this.color = color;
     this.breed = breed;
 }
-  let myDog = new Dog('Scott', 'Black', 'Labrador');
+
+Dog.prototype.age = 13;
+
+let myDog = new Dog('Scott', 'Black', 'Labrador');
+let secondDog = new Dog('Violette', 'Ash', 'Poodle');
+
+console.log(myDog.age);
+console.log(secondDog.age);
+
+console.log(Dog.prototype);
+console.log(myDog._proto_);
+Dog.prototype === myDog._proto_ ? true : console.log('false');
+
+
 
 console.log(Object.getOwnPropertyDescriptor(myDog, 'name'));
 Object.defineProperty(myDog, 'color', {writable: false});
@@ -52,8 +65,19 @@ for ( let propertyName in continents) {
 let myArr = ["green", "brown", "yellow"];
 
 Object.defineProperty(Array.prototype, 'last', {get: function() {
-    return this[this.length-1];
+    return this[this.length-1]; // this is what returns the last item
 }});
 
 let last = myArr.last; // this gets me "yellow"
 console.log(last);
+
+
+
+let protoFunc = function () {
+
+};
+console.log(protoFunc.prototype);
+
+let hunter = {name: 'Marley'};
+console.log(hunter._proto_);
+
