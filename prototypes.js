@@ -30,6 +30,11 @@ let secondDog = new Dog('Violette', 'Ash', 'Poodle');
 
 console.log(myDog.age);
 console.log(secondDog.age);
+console.log(myDog.hasOwnProperty('age')); // false because the age property is on the prototype and not the object instance.
+
+// Whe we try to get a property from an object, JS will first check the object itself in the 'this' properites
+// If nothing is found there, it checks the prototype and returns that if it exists.
+// the instnace properties overide the protype properties, so if JS finds a value on the instance, it will stop checking.
 
 console.log(Dog.prototype);
 console.log(myDog._proto_);
