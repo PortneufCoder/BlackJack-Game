@@ -14,6 +14,12 @@ console.log(cat);
 //   }
 //   }
 
+function Dog(name, color, breed) {
+  Animal.call(this);
+  this.name = name;
+  this.color = color;
+  this.breed = breed;
+}
 
 
 let myDog = new Dog("Scott", "Black", "Labrador");
@@ -23,41 +29,44 @@ console.log(myDog.age);
 console.log(secondDog.age);
 console.log(myDog.hasOwnProperty("age")); // false because the age property is on the prototype and not the object instance.
 
-// Changing a function's prototype
+//Changing a function's prototype
 
 Dog.prototype = {age: 15}; // this prototype is a new instance of the dog object, so it has a different age. So there a re two dog ages in memory. It points to a different object instance.
 console.log(myDog.age);
 console.log(Dog.prototype.age);
-
-
-
-Creating a prototypal inheritance chain
-
-
-
-
+//Creating a prototypal inheritance chain
   
 Dog.prototype.age = 13;
 
+
+console.log(Object.getOwnPropertyDescriptor(myDog, "name"));
+Object.defineProperty(myDog, "color", { writable: false });
+
+myDog.color = "Blue";
+
+console.log(myDog.color); // this gives an error as I prevented property rewrite on line 43
 
 function Animal () {
 }
 
 Animal.prototype.speak = function () {
-    console.log('Growl');
+    return "Growl";
 };
 
-function Dog(name, color, breed) {
-    Animal.call(this);
-    this.name = name;
-    this.color = color;
-    this.breed = breed;
-  }
 
-let jenkins = new Dog('Jenkins', 'Grey', 'Alsatian');
+
+function Cat (name, species) {
+  Animal.call(this);
+  this.name = name;
+  this.species = species;
+}
+
+Cat.prototype = Object.create(Animal.prototype);
+
+let jenkins = new Cat('Jenkins', 'Persian');
 
 console.log(jenkins);
-console.log(jenkins.prototype.speak());
+console.log(jenkins.speak()); // inherits the speak function from the Animal prototype
 
 
 
@@ -67,16 +76,10 @@ console.log(jenkins.prototype.speak());
 // If nothing is found there, it checks the prototype and returns that if it exists.
 // the instnace properties overide the protype properties, so if JS finds a value on the instance, it will stop checking.
 
-console.log(Dog.prototype);
-console.log(myDog._proto_);
-Dog.prototype === myDog._proto_ ? true : console.log("false");
 
-console.log(Object.getOwnPropertyDescriptor(myDog, "name"));
-Object.defineProperty(myDog, "color", { writable: false });
+// console.log(myDog._proto_);
+// let findFacts = Dog.prototype === myDog._proto_ ? true : console.log("false");
 
-myDog.color = "Blue";
-
-console.log(myDog.color); // this gives an error as I prevented property rewrite on line 29
 
 let continents = {
   name: { country: "Japan", tree: "Blossoms" },
