@@ -14,13 +14,7 @@ console.log(cat);
 //   }
 //   }
 
-function Dog(name, color, breed) {
-  this.name = name;
-  this.color = color;
-  this.breed = breed;
-}
 
-Dog.prototype.age = 13;
 
 let myDog = new Dog("Scott", "Black", "Labrador");
 let secondDog = new Dog("Violette", "Ash", "Poodle");
@@ -28,6 +22,46 @@ let secondDog = new Dog("Violette", "Ash", "Poodle");
 console.log(myDog.age);
 console.log(secondDog.age);
 console.log(myDog.hasOwnProperty("age")); // false because the age property is on the prototype and not the object instance.
+
+// Changing a function's prototype
+
+Dog.prototype = {age: 15}; // this prototype is a new instance of the dog object, so it has a different age. So there a re two dog ages in memory. It points to a different object instance.
+console.log(myDog.age);
+console.log(Dog.prototype.age);
+
+
+
+Creating a prototypal inheritance chain
+
+
+
+
+  
+Dog.prototype.age = 13;
+
+
+function Animal () {
+}
+
+Animal.prototype.speak = function () {
+    console.log('Growl');
+};
+
+function Dog(name, color, breed) {
+    Animal.call(this);
+    this.name = name;
+    this.color = color;
+    this.breed = breed;
+  }
+
+let jenkins = new Dog('Jenkins', 'Grey', 'Alsatian');
+
+console.log(jenkins);
+console.log(jenkins.prototype.speak());
+
+
+
+
 
 // Whe we try to get a property from an object, JS will first check the object itself in the 'this' properites
 // If nothing is found there, it checks the prototype and returns that if it exists.
@@ -78,3 +112,7 @@ console.log(protoFunc.prototype);
 
 let hunter = { name: "Marley" };
 console.log(hunter._proto_);
+
+
+
+
