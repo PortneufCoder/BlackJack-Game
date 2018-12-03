@@ -1,3 +1,5 @@
+// this file is s list of practice code on prototypal inheritance
+
 let cat = { name: "mimi", sheen: "Black", speak: () => "meooow" };
 cat.age = 4;
 
