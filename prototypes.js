@@ -46,11 +46,12 @@ myDog.color = "Blue";
 
 console.log(myDog.color); // this gives an error as I prevented property rewrite on line 43
 
-function Animal () {
+function Animal (voice) {
+  this.voice = voice || 'Growl';
 }
 
 Animal.prototype.speak = function () {
-    return "Growl";
+    return this.voice;
 };
 
 
